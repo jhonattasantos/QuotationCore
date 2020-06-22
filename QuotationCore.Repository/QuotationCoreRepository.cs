@@ -27,6 +27,7 @@ namespace QuotationCore.Repository
         {
             IQueryable<Quotation> query = _context.Quotations
                 .Include(c => c.Items)
+                .Include(c => c.Validations)
                 .OrderBy(c => c.Id);
             return await query.ToArrayAsync();
             
@@ -36,6 +37,7 @@ namespace QuotationCore.Repository
         {
             IQueryable<Quotation> query = _context.Quotations
                 .Include(c => c.Items)
+                .Include(c => c.Validations)
                 .Where(c => c.Id == id)
                 .OrderBy(c => c.Id);
             return await query.FirstOrDefaultAsync();
@@ -45,6 +47,7 @@ namespace QuotationCore.Repository
         {
             IQueryable<Quotation> query = _context.Quotations
                 .Include(c => c.Items)
+                .Include(c => c.Validations)
                 .Where(c => c.Name.ToLower().Contains(name.ToLower()))
                 .OrderBy(c => c.Name);
             return await query.ToArrayAsync();
